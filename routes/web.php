@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 // cada ruta debe tener un verbo: post get patch delete
 Route::match(['get', 'post'], '/verbos-http', function () {
-    return "GET POST PATCH DELETE";
+    return "GET POST PATH DELETE";
 });
 
 // las rutas reciben datos para ser dinamicas dependiendo el verbo
