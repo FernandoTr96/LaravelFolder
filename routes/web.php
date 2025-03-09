@@ -9,7 +9,8 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 // una ruta recibe una ruta url, un controlador  y retorna una vista o respuesta.
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 // cada ruta debe tener un verbo: post get patch delete
 Route::match(['get', 'post'], '/verbos-http', function () {
@@ -24,14 +25,14 @@ Route::match(['get', 'post'], '/verbos-http', function () {
 Route::get('saludar/{nombre}/{mensaje?}', function ($nombre, $mensaje = 'me gusta laravel') {
     return "Hola, soy $nombre. $mensaje !!";
 })
-->where('nombre', '[a-zA-Z\s]+')    // Permite letras y espacios para nombre
-->where('mensaje', '[a-zA-Z\s]+')   // Permite letras y espacios para mensaje
-->name('saludar');                  //nombrar ruta para usar el endpoint obtenerURL;
+    ->where('nombre', '[a-zA-Z\s]+')    // Permite letras y espacios para nombre
+    ->where('mensaje', '[a-zA-Z\s]+')   // Permite letras y espacios para mensaje
+    ->name('saludar');                  //nombrar ruta para usar el endpoint obtenerURL;
 
 
 // Las rutas pueden ser nombradas lo cual nos da un punto de referencia para obtener su url y reutilizar codigo
 Route::get('obtenerURL/{nombreRuta}', function ($nombreRuta) {
-    return route($nombreRuta,['nombre' => 'Dante']);
+    return route($nombreRuta, ['nombre' => 'Dante']);
 });
 
 
@@ -73,5 +74,5 @@ Route::resource('post', PostController::class);
 // En los resource tambien se pueden agregar names debido a que no estan individualmente hay que cambiar el nombre
 // y el nombre del parametro si lo requieres
 Route::resource('post', PostController::class)
-->parameters(['articulos' => 'post'])
-->names('articulos');
+    ->parameters(['articulos' => 'post'])
+    ->names('articulos');

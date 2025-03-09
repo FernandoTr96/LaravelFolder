@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+
+    // Los metodos invoke se ejecutan al pasar solo la referencia de la clase 
+    
+    /*     public function index(){
+        return 'Home';
+    } */
+
+    public function __invoke()
+    {
         return 'Home';
     }
 }
