@@ -28,5 +28,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // validacion global de parametros en rutas
         Route::pattern('id','[0-9]+');
+        // cambiar verbos de la url en los crud
+        Route::resourceVerbs([
+            'create' => 'nuevo',
+            'edit' => 'editar',
+            'destroy' => 'eliminar'
+        ]);
     }
 }

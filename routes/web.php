@@ -36,24 +36,42 @@ Route::get('obtenerURL/{nombreRuta}', function ($nombreRuta) {
 
 
 // Rutas para hacer un crud 
+// Rutas manuales
 
 // 1.- Listar registros
-Route::get('/posts', [PostController::class,'index'])->name('post.index');
+//Route::get('/posts', [PostController::class,'index'])->name('post.index');
 
 // 2.- Mostrar formulario para guardar registro
-Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
+//Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
 
 // 3.- Guardar registro
-Route::post('/posts', [PostController::class,'store'])->name('post.store');
+//Route::post('/posts', [PostController::class,'store'])->name('post.store');
 
 // 4.- Mostrar un registro
-Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
+//Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
 
 // 5.- Mostrar formulario para editar registro
-Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
+//Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
 
 // 6.- Actualizar un registro
-Route::patch('/posts/{post}', [PostController::class,'update'])->name('post.update');
+//Route::patch('/posts/{post}', [PostController::class,'update'])->name('post.update');
 
 // 7.- Eliminar un registro
-Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
+//Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
+
+
+// Rutas usando resource
+// generara todas las rutas necesarias para fullstack
+Route::resource('post', PostController::class);
+
+// En el caso de las api no necesitamos la vista de edit y create asi que mejor usar esto
+// Route::apiResources('post', PostController::class);
+
+// tambien podemos usar only para generar solo algunas rutas
+// Route::apiResources('post', PostController::class)->only(['index']);
+
+// En los resource tambien se pueden agregar names debido a que no estan individualmente hay que cambiar el nombre
+// y el nombre del parametro si lo requieres
+Route::resource('post', PostController::class)
+->parameters(['articulos' => 'post'])
+->names('articulos');
