@@ -63,7 +63,7 @@ Route::get('obtenerURL/{nombreRuta}', function ($nombreRuta) {
 
 // Rutas usando resource
 // generara todas las rutas necesarias para fullstack
-Route::resource('post', PostController::class);
+//Route::resource('post', PostController::class);
 
 // En el caso de las api no necesitamos la vista de edit y create asi que mejor usar esto
 // Route::apiResources('post', PostController::class);
@@ -79,7 +79,7 @@ Route::resource('post', PostController::class);
 
 
 // Grupo de rutas agrupa rutas que usan el mismocontroller
-Route::prefix('post')->name('post.')->controller(PostController::class)->group(function () {
+Route::prefix('posts')->name('posts.')->controller(PostController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/', 'store')->name('store');

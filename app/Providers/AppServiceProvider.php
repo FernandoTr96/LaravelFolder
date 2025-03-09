@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 /* Inicializar valores o reglas para todo el proyecto */
+
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
@@ -27,12 +28,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // validacion global de parametros en rutas
-        Route::pattern('id','[0-9]+');
+        Route::pattern('id', '[0-9]+');
+        
         // cambiar verbos de la url en los crud
-        Route::resourceVerbs([
+        /*  Route::resourceVerbs([
             'create' => 'nuevo',
             'edit' => 'editar',
             'destroy' => 'eliminar'
-        ]);
+        ]); */
+
     }
 }

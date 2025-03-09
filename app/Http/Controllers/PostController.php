@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        return 'Listar posts';
+        // Las variables se pasan a las vistas usando compact o en array si qquieres definir el nombre de la variable
+        $title = 'My posts';
+        return view('posts.index', compact('title'));
     }
 
     public function create(){
-        return 'Ver formulario';
+        return view('posts.create');
     }
 
     public function store(){
@@ -19,11 +21,11 @@ class PostController extends Controller
     }
 
     public function show($post){
-        return 'Mostrar un registro';
+        return view('posts.show');
     }
 
     public function edit($post){
-        return 'Ver formulario para editar registro';
+        return view('posts.edit');
     }
 
     public function update($post){
