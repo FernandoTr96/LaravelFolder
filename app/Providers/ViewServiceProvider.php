@@ -27,6 +27,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         // pasar datos a todas las vistas con view que tiene que venir de facade
         // tambien de puede con view::composer el cual permite enviar la variable a una sola vista
+        // para el composer se recomienda una clase composer donde se pueda gestionar mejor todo
         View::share('errorMessage', 'Error when load info');
     }
 }
