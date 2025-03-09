@@ -3,12 +3,13 @@
 // Aqui se registran las rutas que son parte del proyecto full stack de laravel blade
 // rutas en cache: php artisan route:cache
 // eliminar rutas del cache: php artisan route:clear
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 // una ruta recibe una ruta url, un controlador  y retorna una vista o respuesta.
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // cada ruta debe tener un verbo: post get patch delete
 Route::match(['get', 'post'], '/verbos-http', function () {
@@ -37,36 +38,22 @@ Route::get('obtenerURL/{nombreRuta}', function ($nombreRuta) {
 // Rutas para hacer un crud 
 
 // 1.- Listar registros
-Route::get('/posts', function(){
-    return 'Listar posts';
-});
+Route::get('/posts', [PostController::class,'index'])->name('post.index');
 
 // 2.- Mostrar formulario para guardar registro
-Route::get('/posts/create', function(){
-    return 'Ver formulario';
-});
+Route::get('/posts/create', [PostController::class,'create'])->name('post.create');
 
 // 3.- Guardar registro
-Route::post('/posts', function(){
-    return 'Guardar registro';
-});
+Route::post('/posts', [PostController::class,'store'])->name('post.store');
 
 // 4.- Mostrar un registro
-Route::get('/posts/{post}', function($post){
-    return 'Mostrar un registro';
-});
+Route::get('/posts/{post}', [PostController::class,'show'])->name('post.show');
 
 // 5.- Mostrar formulario para editar registro
-Route::get('/posts/{post}/edit', function($post){
-    return 'Ver formulario para editar registro';
-});
+Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('post.edit');
 
 // 6.- Actualizar un registro
-Route::patch('/posts/{post}', function($post){
-    return 'Actualizar registro';
-});
+Route::patch('/posts/{post}', [PostController::class,'update'])->name('post.update');
 
 // 7.- Eliminar un registro
-Route::delete('/posts/{post}', function($post){
-    return 'Eliminar registro';
-});
+Route::delete('/posts/{post}', [PostController::class,'destroy'])->name('post.destroy');
