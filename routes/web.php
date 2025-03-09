@@ -73,6 +73,18 @@ Route::resource('post', PostController::class);
 
 // En los resource tambien se pueden agregar names debido a que no estan individualmente hay que cambiar el nombre
 // y el nombre del parametro si lo requieres
-Route::resource('post', PostController::class)
+/* Route::resource('post', PostController::class)
     ->parameters(['articulos' => 'post'])
-    ->names('articulos');
+    ->names('articulos'); */
+
+
+// Grupo de rutas agrupa rutas que usan el mismocontroller
+Route::prefix('post')->name('post.')->controller(PostController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/{post}', 'show')->name('show');
+    Route::get('/{post}/edit', 'edit')->name('edit');
+    Route::patch('/{post}', 'update')->name('update');
+    Route::delete('/{post}', 'destroy')->name('destroy');
+});
