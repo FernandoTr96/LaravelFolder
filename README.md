@@ -8,3 +8,16 @@ echo "alias sail='bash vendor/bin/sail'" >> ~/.bashrc
 source ~/.bashrc
 ```
 + Modificamos lo que quieramos y levantamos el proyecto con *sail up* o *sail up -d*.
+
+### Comandos de laravel
+
+#### Migraciones 
++ create: *php artisan make:migration create_tablename_table*
++ execute migration: *php artisan migrate*
++ execute one migration: *php artisan migrate --path=relativepath*
++ rollback: *php artisan migrate:rollback*
++ refresh: *php artisan migrate:refresh*
++ add data: *php artisan make:migration add_propertyname*
++ drop table: *php artisan make:migration drop_tablename*
++ alter column: *php artisan make:migration alter_colname_from_tablename_table* 
++ rename column: *php artisan make:migration rename_colname_from_tablename_table*
