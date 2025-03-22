@@ -30,3 +30,9 @@ source ~/.bashrc
         'precio' => PrecioCast::class,
     ];
 `
+
+#### Recordatorios de uso
++ Hay que usar mas cursor, lazy y chunk para iteraciones.
++ El modelo tiene casts, mutadores, accesors, configuracion de binding, etc.
++ Considerar puck, with para cargar relaciones, when para disparar queries, los AND que son query anidadas del where, exists, doesntExist, whereHas, where, doesntHas,etc.
++ Existen las relaciones "atravez de (through)" y las relaciones autoreferenciadas.
