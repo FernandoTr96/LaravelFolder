@@ -27,6 +27,9 @@ source ~/.bashrc
 + create: *php artisan make:job test*
 + queue: *php artisan make:queue-table* *php artisan migrate*
 
+#### middleware
++ create: *php artisan make:middleware auth*
+
 #### Otros
 + crear cast personalizado para modelos: *php artisan make:cast NombreDelCast*
 `
@@ -40,3 +43,8 @@ source ~/.bashrc
 + El modelo tiene casts, mutadores, accesors, configuracion de binding, etc.
 + Considerar puck, with para cargar relaciones, when para disparar queries, los AND que son query anidadas del where, exists, doesntExist, whereHas, where, doesntHas,etc.
 + Existen las relaciones "atravez de (through)" y las relaciones autoreferenciadas.
++ usar jobs y queues para operaciones asyncronas donde el procedimiento es pesado
++ Los middlewares protegen rutas
++ Los gates protegen los elementos ui de las vistas mediante directivas y la condicion establecida  en el gate
++ Las policies son un conjunto de reglas asociadas a un modelo
++ Usar scopes para filtros o modificar consultas globalmente
