@@ -22,13 +22,19 @@ source ~/.bashrc
 + alter column: *php artisan make:migration alter_colname_from_tablename_table* 
 + rename column: *php artisan make:migration rename_colname_from_tablename_table*
 
-
 #### Jobs
 + create: *php artisan make:job test*
 + queue: *php artisan make:queue-table* *php artisan migrate*
 
+#### Listeners and events
++ create: *php artisan make:event eventName*
++ create: *php artisan make:listener listenerName*
+
 #### middleware
 + create: *php artisan make:middleware auth*
+
+### email
++ create: *php artisan make:mail NombreDelMailable*
 
 #### Otros
 + crear cast personalizado para modelos: *php artisan make:cast NombreDelCast*
