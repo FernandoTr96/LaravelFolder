@@ -24,6 +24,9 @@ class User extends Authenticatable
         'password',
     ];
 
+    /* contrareio a fillable especifica que campos no quieres insertar */
+    protected $guarded = [];
+
     /**
      * The attributes that should be hidden for serialization.
      *
