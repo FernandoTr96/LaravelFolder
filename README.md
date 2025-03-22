@@ -23,6 +23,10 @@ source ~/.bashrc
 + rename column: *php artisan make:migration rename_colname_from_tablename_table*
 
 
+#### Jobs
++ create: *php artisan make:job test*
++ queue: *php artisan make:queue-table* *php artisan migrate*
+
 #### Otros
 + crear cast personalizado para modelos: *php artisan make:cast NombreDelCast*
 `
