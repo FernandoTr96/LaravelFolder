@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
     */
 
-    /*  tablas POLIMORFICAS
+    /*  TABLAS POLIMORFICAS
         Las relaciones polimorficas por lo general son uno a muchos u obtienes el registro del que es parte el polimorfico
         - uno a muchos polimorfico:  $this->morphMany(entidad::class, 'todoeable') (en el que no es polimorfico)
         - a quien pertenece el polimorfico: $this->morphTo(); (en el polimorfico)

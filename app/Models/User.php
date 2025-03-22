@@ -38,7 +38,7 @@ class User extends Authenticatable
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
-    */
+     */
 
     /*  Los atributos del modelo pueden ser parseados usando casts
         protected $casts = [
@@ -57,4 +57,48 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    /* RELACIONES DE MODELOS */
+
+    /* relacion uno a uno 
+        - tiene un elemento: $this->hasOne(Profile::class);
+        - a que entidad pertenece: $this->belongsTo(User::class);
+    */
+
+    /* relacion uno a muchos  
+        - tiene muchos elementos: $this->hasMany(Post::class);
+        - a que entidad pertenece uno de estos elementos: $this->belongsTo(User::class);
+    */
+
+    /* relacion muchos a muchos 
+        - tiene muchos elementos: $this->belongsToMany(Role::class);
+        - a que entidad pertenece uno de estos elementos: $this->belongsToMany(User::class);
+        - en estos casos es neccesaria una tabla pivote mediante una migracion la cual tendra las llaves foraneas de ambas tablas
+        - finalmente la relacion inversa belongs to many esperara el nombre de la tabla y los campos
+        $this->belongsToMany(Role::class, 'usuarios_roles', 'usuario_id', 'rol_id')->withTimestamps();
+    */
+
+    /* relacion indirecta entre 2 modelos 
+       - obtener resultados de otro modelo usando otro como intermediario 
+       - company debe tener el id del pais y del empleado de esta forma mediante el pais sabes cuantos empleados hay
+       País (Country) → Compañía (Company) → Empleado (Employee)
+       $this->hasManyThrough(Employee::class, Company::class, 'country_id', 'company_id');
+    */
+
+    /* relaciones auto referenciadas  
+       - cuando el mismo registro guarda una referencia de id de otro registro de la misma entidad
+       - pero que tendra una funcion diferente
+        Ejemplo: Un empleado tiene un jefe (otro empleado) entonces en el mismo modelo.
+        
+        public function subordinates()
+        {
+            return $this->hasMany(Employee::class, 'manager_id');
+        }
+
+        public function manager()
+        {
+            return $this->belongsTo(Employee::class, 'manager_id');
+        }
+    */
 }
