@@ -34,6 +34,18 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /* ACCESORES Y MUTADORES */
+
+    /* accesor: retorna el valor de la base de datos original y puedes modificarlo sin afectar el valor de la db */
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+    /* mutador: cambia el valor del atributo antes de guardarlo en la db */
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtolower($value);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
