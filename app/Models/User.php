@@ -49,6 +49,12 @@ class User extends Authenticatable
         $this->attributes['name'] = strtolower($value);
     }
 
+    /* modificar el binding de las rutas para obtener otro dato y no el objeto como tal */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * Get the attributes that should be cast.
      *
