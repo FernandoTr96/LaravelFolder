@@ -47,4 +47,4 @@ source ~/.bashrc
 + Los middlewares protegen rutas
 + Los gates protegen los elementos ui de las vistas mediante directivas y la condicion establecida  en el gate
 + Las policies son un conjunto de reglas asociadas a un modelo
-+ Usar scopes para filtros o modificar consultas globalmente
++ Usar scopes para modificar consultas en los modelos, los scope locales van en el modelo los globales los creas en App/Scopes y debe implementar Scope en un metodo apply. Luego ese scope se llama en el modelo que quieras usando booted y dentro static::addGlobalScope(new NotDeletedScope).
