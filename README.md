@@ -21,3 +21,12 @@ source ~/.bashrc
 + drop table: *php artisan make:migration drop_tablename*
 + alter column: *php artisan make:migration alter_colname_from_tablename_table* 
 + rename column: *php artisan make:migration rename_colname_from_tablename_table*
+
+
+#### Otros
++ crear cast personalizado para modelos: *php artisan make:cast NombreDelCast*
+`
+    protected $casts = [
+        'precio' => PrecioCast::class,
+    ];
+`
