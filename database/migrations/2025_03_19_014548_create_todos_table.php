@@ -8,7 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
+    */
+
+    /*  tablas POLIMORFICAS
+        Las relaciones polimorficas por lo general son uno a muchos u obtienes el registro del que es parte el polimorfico
+        - uno a muchos polimorfico:  $this->morphMany(entidad::class, 'todoeable') (en el que no es polimorfico)
+        - a quien pertenece el polimorfico: $this->morphTo(); (en el polimorfico)
+        - muchos polimorficos son de una entidad:  $this->morphedByMany(User::class, 'roleable');  (en el polimorfico)
+        - una entidad tiene muchos polimorficos: $this->morphToMany(Role::class, 'roleable'); (no va en el polimorfico)
+        - cuando solo tiene un solo elemento polimorfico: $this->morphOne(Profile::class, 'profileable'); (no va en el polimorfico)
+    */
+
     public function up(): void
     {
         Schema::create('todos', function (Blueprint $table) {
