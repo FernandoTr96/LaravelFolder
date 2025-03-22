@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -37,7 +38,18 @@ class User extends Authenticatable
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
-     */
+    */
+
+    /*  Los atributos del modelo pueden ser parseados usando casts
+        protected $casts = [
+            'propiedad' => 'float',
+            'propiedad' => 'datetime',
+            'propiedad' => 'boolean',
+            'propiedad' => 'array',
+            'propiedad' => 'json',
+            'propiedad' => 'collection',
+        ];
+    */
     protected function casts(): array
     {
         return [
