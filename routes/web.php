@@ -6,11 +6,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // una ruta recibe una ruta url, un controlador  y retorna una vista o respuesta.
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/', HomeController::class)->name('home');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 // cada ruta debe tener un verbo: post get patch delete
 Route::match(['get', 'post'], '/verbos-http', function () {

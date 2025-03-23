@@ -4,6 +4,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\BaseRepository;
+use App\repositories\interfaces\IBaseRepository;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
@@ -29,13 +31,12 @@ class AppServiceProvider extends ServiceProvider
     {
         // validacion global de parametros en rutas
         Route::pattern('id', '[0-9]+');
-        
+
         // cambiar verbos de la url en los crud
         /*  Route::resourceVerbs([
             'create' => 'nuevo',
             'edit' => 'editar',
             'destroy' => 'eliminar'
         ]); */
-
     }
 }
