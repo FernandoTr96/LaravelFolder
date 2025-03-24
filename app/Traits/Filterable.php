@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+
 use Illuminate\Database\Eloquent\Builder;
 
 trait Filterable
@@ -32,15 +33,6 @@ trait Filterable
             }
         }
 
-        // Aplicar los filtros 'like'
-        if (isset($filters['like'])) {
-            foreach ($filters['like'] as $filter) {
-                if (isset($queryParams[$filter])) {
-                    $query->where($filter, 'like', '%' . $queryParams[$queryKeyForSearch] . '%');
-                }
-            }
-        }
-
         // Aplicar los filtros 'custom'
         if (isset($filters['custom'])) {
             foreach ($filters['custom'] as $customProperty) {
@@ -49,6 +41,15 @@ trait Filterable
                     $customProperty['callback']($query);
                 }
             }
+        }
+
+        // Aplicar los filtros 'like'
+        if (isset($queryParams[$queryKeyForSearch]) && isset($filters['like'])) {
+            $query->where(function ($query) use ($filters, $queryParams, $queryKeyForSearch) {
+                foreach ($filters['like'] as $filter) {
+                    $query->orWhere($filter, 'like', "%$queryParams[$queryKeyForSearch]%");
+                }
+            });
         }
 
         return $query;
