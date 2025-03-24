@@ -45,13 +45,11 @@ trait Filterable
 
         // Aplicar los filtros 'like'
         if (isset($queryParams[$queryKeyForSearch]) && isset($filters['like'])) {
-            $query->where(function ($query) use ($filters, $queryParams, $queryKeyForSearch) {
-                foreach ($filters['like'] as $filter) {
-                    $query->orWhere($filter, 'like', "%$queryParams[$queryKeyForSearch]%");
-                }
-            });
+            foreach ($filters['like'] as $filter) {
+                $query->orWhere($filter, 'like', "%$queryParams[$queryKeyForSearch]%");
+            }
         }
-
+        //dd($query->toSQL());
         return $query;
     }
 }

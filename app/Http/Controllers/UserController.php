@@ -23,7 +23,7 @@ class UserController extends Controller
             'custom' => [
                 [
                     'callback' => function ($query) {
-                        $query->where('created_at', '<=', '2025-03-23 22:06:23');
+                        $query->orWhereRaw('YEAR(created_at) = ?', [2024]);
                     }
                 ]
             ],
