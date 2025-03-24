@@ -1,7 +1,7 @@
-<!-- Aqui se crean los comandos artisan para el proyecto -->
-<!-- Podriamos automatizar acciones comunes en el proyecto con esto -->
-
 <?php
+
+// Aqui se crean los comandos artisan para el proyecto -->
+// Podriamos automatizar acciones comunes en el proyecto con esto -->
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;

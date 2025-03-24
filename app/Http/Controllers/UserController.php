@@ -1,19 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\repositories\UserRepository;
+
+use App\Http\Resources\UserResource;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    /* inyeccion de dependencias */
-    protected $userRepository;
+    protected $userService;
     
-    public function __construct(UserRepository $userRepository) {
-        $this->userRepository = $userRepository;
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
     }
 
     public function index(){
-        $users = $this->userRepository->getAll();
-        return $users;
+        
+        // definir filtros
+        $filters = [
+            'where' => ['employee_id'],
+            'like' => ['name','email'],
+            'custom' => [
+                [
+                    'callback' => function($query){
+                        $query->where('id', '<=', 10);
+                    }
+                ]
+            ]
+        ];
+        
+        // consultar 
+        $users = $this->userService->list(
+            filters: $filters,
+            relations: [],
+            paginated: true
+        );
+         
+        // responder
+        return UserResource::collection($users);
     }
 }

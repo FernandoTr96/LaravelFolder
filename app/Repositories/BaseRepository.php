@@ -2,10 +2,19 @@
 
 namespace App\Repositories;
 
+use App\Traits\Filterable;
+use App\Traits\Pagineable;
+use App\Traits\Relationable;
 use Illuminate\Database\Eloquent\Model;
 use App\repositories\interfaces\IBaseRepository;
+use App\Traits\Sorteable;
 
 class BaseRepository implements IBaseRepository{
+
+    use Filterable;
+    use Pagineable;
+    use Relationable;
+    use Sorteable;
 
     protected $model;
 
@@ -13,13 +22,29 @@ class BaseRepository implements IBaseRepository{
         $this->model = $model;
     }
 
-    public function getAll() {
-        return $this->model->all();
+    public function getAll(array $filters, array $relations = [], bool $paginated = true) {
+        // listamos
+        $query = $this->model->query();
+        // Aplicar los filtros
+        $query = $this->scopeApplyFilters($filters, $query);
+        // Aplicar sort de columnas
+        $query = $this->scopeSorteable($query);
+        // Cargar relaciones dinámicamente
+        $query = $this->scopeWithRelations($relations, $query);
+        //paginar
+        $query = $this->scopePagineable($paginated, $query);
+        // devolvemos el listado
+        return $query;
     }
 
-    public function getById($id) {
-        return $this->model->findOrFail($id);
+    public function getById($id, array $relations = [])
+    {
+        // Obtiene el registro por ID utilizando una consulta directa
+        $query = $this->model->where('id', $id);
+        $query = $this->scopeWithRelations($relations, $query);
+        return $query->first();
     }
+    
 
     public function create(array $data) {
         return $this->model->create($data);
